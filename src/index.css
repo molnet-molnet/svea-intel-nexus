@@ -1,78 +1,83 @@
 
+@import '@fontsource/manrope/400.css';
+@import '@fontsource/manrope/500.css';
+@import '@fontsource/manrope/600.css';
+@import '@fontsource/manrope/700.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 240 33% 99%;
-    --foreground: 240 10% 15%;
+    --background: 180 30% 99%;
+    --foreground: 200 10% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 15%;
+    --card-foreground: 200 10% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 15%;
+    --popover-foreground: 200 10% 15%;
 
-    --primary: 225 80% 45%;
+    --primary: 175 60% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 15%;
+    --secondary: 170 40% 92%;
+    --secondary-foreground: 175 60% 30%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 45%;
+    --muted: 170 40% 96%;
+    --muted-foreground: 200 10% 40%;
 
-    --accent: 225 80% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 180 60% 95%;
+    --accent-foreground: 175 60% 30%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 225 80% 45%;
+    --border: 200 20% 92%;
+    --input: 200 20% 92%;
+    --ring: 175 60% 40%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
-    --sidebar-background: 240 10% 15%;
+    --sidebar-background: 200 10% 15%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 225 80% 65%;
+    --sidebar-primary: 175 60% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 10% 20%;
+    --sidebar-accent: 200 10% 20%;
     --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 240 10% 20%;
-    --sidebar-ring: 225 80% 65%;
+    --sidebar-border: 200 10% 20%;
+    --sidebar-ring: 175 60% 60%;
   }
 
   .dark {
-    --background: 240 10% 15%;
-    --foreground: 0 0% 95%;
+    --background: 200 10% 9%;
+    --foreground: 180 5% 95%;
 
-    --card: 240 10% 18%;
-    --card-foreground: 0 0% 95%;
+    --card: 200 10% 12%;
+    --card-foreground: 180 5% 95%;
 
-    --popover: 240 10% 18%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 200 10% 12%;
+    --popover-foreground: 180 5% 95%;
 
-    --primary: 225 80% 65%;
+    --primary: 175 60% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 4% 20%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 170 30% 20%;
+    --secondary-foreground: 170 30% 90%;
 
-    --muted: 240 4% 20%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 170 20% 18%;
+    --muted-foreground: 170 10% 65%;
 
-    --accent: 225 80% 65%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 175 30% 25%;
+    --accent-foreground: 0 0% 95%;
 
     --destructive: 0 62% 55%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 4% 25%;
-    --input: 240 4% 25%;
-    --ring: 225 80% 65%;
+    --border: 170 20% 20%;
+    --input: 170 20% 20%;
+    --ring: 175 60% 45%;
   }
 }
 
@@ -82,7 +87,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-manrope;
   }
 }
 
@@ -92,9 +97,45 @@
   }
   
   .osint-input {
-    @apply h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background
+    @apply h-10 rounded-xl border border-input bg-background px-4 py-2 text-sm ring-offset-background
     file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
     disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .zen-container {
+    @apply relative overflow-hidden rounded-2xl border border-black/10 bg-white/70 p-6 shadow-sm backdrop-blur-sm;
+  }
+
+  .zen-button {
+    @apply rounded-xl bg-primary px-4 py-2 text-primary-foreground transition-colors hover:bg-primary/90;
+  }
+
+  .zen-input {
+    @apply rounded-xl border border-input bg-background px-4 py-2 text-foreground transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
+  }
+
+  .zen-card {
+    @apply rounded-2xl border border-black/10 bg-white/70 p-6 shadow-sm backdrop-blur-sm;
+  }
+  
+  .resource-tag {
+    @apply inline-block rounded-full border border-black/20 bg-zen-fog px-3 py-1 text-sm font-medium text-foreground shadow-sm transition-all hover:bg-zen-aqua hover:shadow-md;
+  }
+
+  .resource-tag-lg {
+    @apply text-base;
+  }
+
+  .resource-tag-md {
+    @apply text-sm;
+  }
+
+  .resource-tag-sm {
+    @apply text-xs;
+  }
+
+  .misty-bg {
+    @apply relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-zen-fog/40 before:to-zen-mint/30 before:opacity-40 before:blur-3xl before:animate-mist-flow;
   }
 }

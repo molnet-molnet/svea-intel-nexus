@@ -63,19 +63,31 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				osint: {
-					blue: '#1EAEDB',
-					oceanBlue: '#0EA5E9',
-					purple: '#9b87f5',
-					darkGray: '#221F26',
-					gray: '#8E9196',
-					lightGray: '#F1F0FB'
+				// New zen-inspired color palette
+				zen: {
+					mint: '#D4F0E2',      // Soft mint green
+					mintDark: '#97D1B5',  // Darker mint green
+					aqua: '#B9EEF5',      // Soft aqua blue
+					aquaDark: '#60C9D8',  // Darker aqua blue
+					stone: '#F4F1EB',     // Soft stone/beige
+					bamboo: '#E6D6AC',    // Bamboo/tan
+					charcoal: '#414a4c',  // Soft charcoal
+					mist: '#F9FAFB',      // Misty white background
+					fog: '#E8F4F7'        // Foggy light blue
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				sans: ['Manrope', 'sans-serif'],
+				manrope: ['Manrope', 'sans-serif'],
+				quicksand: ['Quicksand', 'sans-serif'],
+				outfit: ['Outfit', 'sans-serif'],
+				comfortaa: ['Comfortaa', 'sans-serif'],
+				poppins: ['Poppins', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {
@@ -111,6 +123,14 @@ export default {
 					'50%': {
 						opacity: '0.8',
 					},
+				},
+				'mist-flow': {
+					'0%': { 
+						backgroundPosition: '0% 0%' 
+					},
+					'100%': { 
+						backgroundPosition: '100% 100%' 
+					},
 				}
 			},
 			animation: {
@@ -118,6 +138,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-out',
 				'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
+				'mist-flow': 'mist-flow 20s ease infinite alternate',
 			}
 		}
 	},

@@ -10,23 +10,23 @@ interface NavbarProps {
 
 const Navbar = ({ onMenuClick }: NavbarProps) => {
   return (
-    <header className="bg-card border-b border-border shadow-sm z-10">
+    <header className="bg-white/80 backdrop-blur-sm border-b border-black/10 shadow-sm z-10">
       <div className="flex items-center justify-between h-16 px-4 md:px-6">
         <div className="flex items-center space-x-4">
           <Button variant="ghost" size="icon" onClick={onMenuClick} className="md:hidden">
-            <Menu className="h-5 w-5" />
+            <Menu className="h-5 w-5 text-foreground" />
             <span className="sr-only">Toggle menu</span>
           </Button>
           <Link to="/" className="flex items-center space-x-2">
-            <Search className="h-6 w-6 text-osint-purple" />
+            <Search className="h-6 w-6 text-primary" />
             <span className="text-lg font-semibold">SVEA Intel Nexus</span>
           </Link>
         </div>
         
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="icon" asChild>
+          <Button variant="ghost" size="icon" asChild className="rounded-xl">
             <Link to="/settings">
-              <Settings className="h-5 w-5" />
+              <Settings className="h-5 w-5 text-foreground" />
               <span className="sr-only">Settings</span>
             </Link>
           </Button>

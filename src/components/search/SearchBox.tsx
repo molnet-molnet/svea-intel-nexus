@@ -43,7 +43,7 @@ const SearchBox = ({
   };
 
   return (
-    <Card className={`border shadow-sm ${className}`}>
+    <Card className={`border border-black/10 bg-white/80 backdrop-blur-sm shadow-sm ${className}`}>
       <CardContent className="pt-4">
         <form onSubmit={handleSearch}>
           <div className="flex items-center space-x-2">
@@ -52,13 +52,13 @@ const SearchBox = ({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={placeholder}
-                className="pr-8"
+                className="pl-10 rounded-xl border-black/10"
               />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <SearchIcon className="h-4 w-4 text-muted-foreground" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <SearchIcon className="h-4 w-4 text-primary" />
               </div>
             </div>
-            <Button type="submit">Search</Button>
+            <Button type="submit" className="rounded-xl">Search</Button>
           </div>
           
           <div className="mt-2">
@@ -66,7 +66,7 @@ const SearchBox = ({
               type="button" 
               variant="ghost" 
               size="sm" 
-              className="text-sm text-muted-foreground flex items-center"
+              className="text-sm text-primary/80 flex items-center hover:text-primary hover:bg-transparent"
               onClick={toggleAdvanced}
             >
               Advanced Options
