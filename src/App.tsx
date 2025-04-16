@@ -16,6 +16,13 @@ import Sources from "./pages/Sources";
 import Settings from "./pages/Settings";
 import { useEffect } from "react";
 
+// Add Quicksand font
+import "@fontsource/quicksand/300.css";
+import "@fontsource/quicksand/400.css";
+import "@fontsource/quicksand/500.css";
+import "@fontsource/quicksand/600.css";
+import "@fontsource/quicksand/700.css";
+
 const queryClient = new QueryClient();
 
 const App = () => {
