@@ -52,11 +52,8 @@ const SearchBox = ({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={placeholder}
-                className="pl-10 rounded-xl border-black/10"
+                className="pl-4 rounded-xl border-black/10"
               />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <SearchIcon className="h-4 w-4 text-primary" />
-              </div>
             </div>
             <Button type="submit" className="rounded-xl">Search</Button>
           </div>

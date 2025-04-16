@@ -1,10 +1,8 @@
 
 import React, { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
-import SearchFeatures from "@/components/dashboard/SearchFeatures";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown, ChevronUp, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight, ChevronDown, ChevronUp, Search, Upload, FileText } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useNavigate } from "react-router-dom";
@@ -24,29 +22,18 @@ const Index = () => {
 
   return (
     <MainLayout>
-      <div className="max-w-4xl mx-auto space-y-8 px-4">
-        {/* Hero Section with Minimal Design */}
-        <div className="flex flex-col items-center text-center py-14 space-y-6 mt-4">
-          <div className="flex items-center mb-2">
-            <Search className="h-10 w-10 text-primary mr-3" />
-            <h1 className="text-4xl font-semibold">SVEA Intel Nexus</h1>
-          </div>
-          
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            A comprehensive OSINT tool for gathering and analyzing information with a Swedish focus.
-          </p>
-          
-          {/* Main Search Bar - Front and Center */}
-          <form onSubmit={handleSearch} className="w-full max-w-2xl mt-8 transition-all">
+      <div className="max-w-4xl mx-auto space-y-8 px-4 flex flex-col items-center">
+        {/* Clean, centered search bar */}
+        <div className="flex flex-col items-center text-center py-14 space-y-6 mt-8 w-full max-w-2xl">          
+          <form onSubmit={handleSearch} className="w-full transition-all">
             <div className="relative">
               <Input
                 type="text"
-                placeholder="Start your search..."
-                className="w-full h-14 pl-12 pr-4 text-lg bg-white/80 rounded-2xl border-black/10 shadow-sm transition-all focus-visible:ring-2 focus-visible:ring-primary"
+                placeholder="Search"
+                className="w-full h-14 pl-6 pr-4 text-lg bg-white/80 rounded-2xl border-black/10 shadow-sm transition-all focus-visible:ring-2 focus-visible:ring-primary"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary" />
               <Button
                 type="submit"
                 className="absolute right-1.5 top-1/2 transform -translate-y-1/2 rounded-xl"
@@ -57,22 +44,6 @@ const Index = () => {
               </Button>
             </div>
           </form>
-
-          {/* Quick Search Options */}
-          <div className="flex flex-wrap gap-3 mt-4 justify-center">
-            <Link to="/search/person">
-              <Button variant="secondary" className="rounded-xl">Person</Button>
-            </Link>
-            <Link to="/search/company">
-              <Button variant="secondary" className="rounded-xl">Company</Button>
-            </Link>
-            <Link to="/search/phone">
-              <Button variant="secondary" className="rounded-xl">Phone</Button>
-            </Link>
-            <Link to="/search/social">
-              <Button variant="secondary" className="rounded-xl">Social Media</Button>
-            </Link>
-          </div>
         </div>
 
         {/* Advanced Tools - Collapsible Section */}
@@ -102,25 +73,29 @@ const Index = () => {
                     Search for images across multiple platforms.
                   </p>
                   <div className="flex justify-end">
-                    <Button className="rounded-xl">Upload Image</Button>
+                    <Button className="rounded-xl">
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload Image
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
               
               <Card className="border border-black/10 bg-white/80">
                 <CardContent className="pt-6">
-                  <h3 className="font-medium mb-2">Cross-Reference Data</h3>
+                  <h3 className="font-medium mb-2">Notes</h3>
                   <p className="text-muted-foreground text-sm mb-4">
-                    Compare information across multiple sources.
+                    Create and manage research notes.
                   </p>
                   <div className="flex justify-end">
-                    <Button className="rounded-xl">Start Tool</Button>
+                    <Button className="rounded-xl">
+                      <FileText className="mr-2 h-4 w-4" />
+                      Open Notes
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
             </div>
-            
-            <SearchFeatures />
             
             {/* Resource Tags */}
             <div className="pt-4 border-t border-black/10">

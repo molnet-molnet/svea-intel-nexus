@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, Search, Settings } from "lucide-react";
+import { Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface NavbarProps {
@@ -13,13 +13,12 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
     <header className="bg-white/80 backdrop-blur-sm border-b border-black/10 shadow-sm z-10">
       <div className="flex items-center justify-between h-16 px-4 md:px-6">
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" onClick={onMenuClick} className="md:hidden">
-            <Menu className="h-5 w-5 text-foreground" />
-            <span className="sr-only">Toggle menu</span>
-          </Button>
-          <Link to="/" className="flex items-center space-x-2">
-            <Search className="h-6 w-6 text-primary" />
-            <span className="text-lg font-semibold">SVEA Intel Nexus</span>
+          {/* Simplified navbar without logo */}
+        </div>
+        
+        <div className="flex-1 flex justify-center">
+          <Link to="/" className="font-medium text-xl">
+            storm
           </Link>
         </div>
         
