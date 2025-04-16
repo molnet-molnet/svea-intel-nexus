@@ -41,7 +41,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <div className="flex flex-1 overflow-hidden">
         <div 
           className={cn(
-            "fixed inset-y-0 left-0 z-20 transition-all duration-500 ease-in-out",
+            "fixed inset-y-0 left-0 z-20 transition-all duration-700 ease-in-out",
             sidebarOpen || sidebarHovered ? "translate-x-0" : "-translate-x-full"
           )}
           onMouseEnter={() => setSidebarHovered(true)}
@@ -52,7 +52,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           {/* Sidebar reveal tab */}
           <div 
             className={cn(
-              "absolute top-20 -right-8 w-8 h-16 bg-white/50 backdrop-blur-sm border border-black/10 rounded-r-xl flex items-center justify-center cursor-pointer transition-opacity duration-500",
+              "absolute top-20 -right-8 w-8 h-16 bg-white/50 backdrop-blur-sm border border-black/10 rounded-r-xl flex items-center justify-center cursor-pointer transition-opacity duration-700",
               (sidebarOpen || sidebarHovered) ? "opacity-0" : "opacity-100"
             )}
             onClick={() => setSidebarOpen(true)}
@@ -62,7 +62,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         </div>
         
         <main className={cn(
-          "flex-1 overflow-auto p-4 md:p-6 pt-4 z-10 transition-all duration-500",
+          "flex-1 overflow-auto p-4 md:p-6 pt-4 z-10 transition-all duration-700",
           sidebarOpen || sidebarHovered ? "ml-64" : "ml-0"
         )}>
           {children}
@@ -75,7 +75,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           variant="ghost" 
           size="icon" 
           asChild 
-          className="h-10 w-10 rounded-full bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-all duration-300"
+          className="h-10 w-10 rounded-full bg-primary/10 hover:bg-primary/20 transition-all duration-500"
         >
           <Link to="/settings">
             <Settings className="h-5 w-5 text-foreground" />
