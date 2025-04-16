@@ -13,11 +13,13 @@ import {
   Info,
   ChevronRight,
   Upload,
-  FileText
+  FileText,
+  Settings2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Card, CardContent } from "@/components/ui/card";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface SidebarProps {
   open: boolean;
@@ -27,6 +29,7 @@ interface SidebarProps {
 const Sidebar = ({ open, setOpen }: SidebarProps) => {
   const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [advancedToolsOpen, setAdvancedToolsOpen] = React.useState(false);
+  const [advancedOptionsOpen, setAdvancedOptionsOpen] = React.useState(false);
   
   const navigation = [
     { name: "Home", href: "/", icon: Home },
@@ -40,7 +43,7 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
   return (
     <aside
       className={cn(
-        "h-full w-64 bg-sidebar z-20 shadow-md flex flex-col transition-transform duration-500 ease-in-out",
+        "h-full w-64 bg-sidebar z-20 shadow-md flex flex-col transition-transform duration-1000 ease-in-out", // Slowed down animation
         open ? "translate-x-0" : "-translate-x-full"
       )}
     >
@@ -59,6 +62,61 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
         </div>
         
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+          {/* Advanced Options Section - Moved from sheet */}
+          <div className="mb-4 pb-4 border-b border-sidebar-border">
+            <Collapsible 
+              open={advancedOptionsOpen}
+              onOpenChange={setAdvancedOptionsOpen}
+              className="w-full"
+            >
+              <CollapsibleTrigger className="flex w-full items-center px-3 py-2 rounded-md text-sm font-medium text-sidebar-foreground bg-sidebar-accent/30 hover:bg-sidebar-accent transition-colors">
+                <Settings2 
+                  className="mr-3 h-4 w-4"
+                />
+                Advanced Options
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pl-4 pr-2 py-2 space-y-4 animate-fade-in">
+                <Card className="border border-sidebar-border bg-sidebar-accent/30">
+                  <CardContent className="pt-4 pb-2">
+                    <h3 className="font-medium mb-2 text-sm text-sidebar-foreground">Search Filters</h3>
+                    <div className="space-y-2">
+                      <div className="p-3 bg-white/80 rounded-lg border border-black/5">
+                        Location Filters
+                      </div>
+                      <div className="p-3 bg-white/80 rounded-lg border border-black/5">
+                        Data Source Filters
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border border-sidebar-border bg-sidebar-accent/30">
+                  <CardContent className="pt-4 pb-2">
+                    <h3 className="font-medium mb-2 text-sm text-sidebar-foreground">Image Search</h3>
+                    <div className="flex justify-end">
+                      <Button size="sm" className="rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
+                        <Upload className="mr-2 h-3 w-3" />
+                        Upload Image
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <div className="pt-2 border-t border-sidebar-border/50">
+                  <h3 className="font-medium mb-2 text-xs text-sidebar-foreground/70 px-2">OSINT Resources</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <a href="https://osintframework.com" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-full bg-sidebar-accent/30 text-sidebar-foreground/80 hover:bg-sidebar-accent/50 transition-colors">
+                      osintframework.com
+                    </a>
+                    <a href="https://intelx.io" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-full bg-sidebar-accent/30 text-sidebar-foreground/80 hover:bg-sidebar-accent/50 transition-colors">
+                      intelx.io
+                    </a>
+                  </div>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
+          
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -90,18 +148,6 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
               <CollapsibleContent className="pl-4 pr-2 py-2 space-y-4">
                 <Card className="border border-sidebar-border bg-sidebar-accent/30">
                   <CardContent className="pt-4 pb-2">
-                    <h3 className="font-medium mb-2 text-sm text-sidebar-foreground">Image Search</h3>
-                    <div className="flex justify-end">
-                      <Button size="sm" className="rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
-                        <Upload className="mr-2 h-3 w-3" />
-                        Upload Image
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card className="border border-sidebar-border bg-sidebar-accent/30">
-                  <CardContent className="pt-4 pb-2">
                     <h3 className="font-medium mb-2 text-sm text-sidebar-foreground">Notes</h3>
                     <div className="flex justify-end">
                       <Button size="sm" className="rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
@@ -111,18 +157,6 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
                     </div>
                   </CardContent>
                 </Card>
-                
-                <div className="pt-2 border-t border-sidebar-border/50">
-                  <h3 className="font-medium mb-2 text-xs text-sidebar-foreground/70 px-2">OSINT Resources</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <a href="https://osintframework.com" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-full bg-sidebar-accent/30 text-sidebar-foreground/80 hover:bg-sidebar-accent/50 transition-colors">
-                      osintframework.com
-                    </a>
-                    <a href="https://intelx.io" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-full bg-sidebar-accent/30 text-sidebar-foreground/80 hover:bg-sidebar-accent/50 transition-colors">
-                      intelx.io
-                    </a>
-                  </div>
-                </div>
               </CollapsibleContent>
             </Collapsible>
           </div>

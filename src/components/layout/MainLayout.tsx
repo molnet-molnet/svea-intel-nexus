@@ -4,10 +4,11 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
-import { ArrowLeft, Settings } from "lucide-react";
+import { ChevronRight, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -41,7 +42,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <div className="flex flex-1 overflow-hidden">
         <div 
           className={cn(
-            "fixed inset-y-0 left-0 z-20 transition-all duration-700 ease-in-out",
+            "fixed inset-y-0 left-0 z-20 transition-all duration-1000 ease-in-out", // Slowed down animation
             sidebarOpen || sidebarHovered ? "translate-x-0" : "-translate-x-full"
           )}
           onMouseEnter={() => setSidebarHovered(true)}
@@ -49,20 +50,20 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         >
           <Sidebar open={sidebarOpen || sidebarHovered} setOpen={setSidebarOpen} />
           
-          {/* Sidebar reveal tab */}
+          {/* Sidebar reveal tab - updated with better icon and positioning */}
           <div 
             className={cn(
-              "absolute top-20 -right-8 w-8 h-16 bg-white/50 backdrop-blur-sm border border-black/10 rounded-r-xl flex items-center justify-center cursor-pointer transition-opacity duration-700",
+              "absolute top-36 -right-10 w-10 h-20 bg-white/50 backdrop-blur-sm border-r border-t border-b border-black/10 rounded-r-xl flex items-center justify-center cursor-pointer transition-opacity duration-700",
               (sidebarOpen || sidebarHovered) ? "opacity-0" : "opacity-100"
             )}
             onClick={() => setSidebarOpen(true)}
           >
-            <ArrowLeft className="h-4 w-4 text-primary" />
+            <ChevronRight className="h-6 w-6 text-primary animate-pulse" />
           </div>
         </div>
         
         <main className={cn(
-          "flex-1 overflow-auto p-4 md:p-6 pt-4 z-10 transition-all duration-700",
+          "flex-1 overflow-auto p-4 md:p-6 pt-4 z-10 transition-all duration-1000", // Slowed down animation
           sidebarOpen || sidebarHovered ? "ml-64" : "ml-0"
         )}>
           {children}
