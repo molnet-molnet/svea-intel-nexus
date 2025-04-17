@@ -10,16 +10,14 @@ import {
   Globe,
   Database,
   X,
-  Info,
+  Settings2,
   ChevronRight,
   Upload,
   FileText,
-  Settings2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Card, CardContent } from "@/components/ui/card";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface SidebarProps {
   open: boolean;
@@ -27,7 +25,6 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ open, setOpen }: SidebarProps) => {
-  const [advancedOpen, setAdvancedOpen] = React.useState(false);
   const [advancedToolsOpen, setAdvancedToolsOpen] = React.useState(false);
   const [advancedOptionsOpen, setAdvancedOptionsOpen] = React.useState(false);
   
@@ -43,17 +40,17 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
   return (
     <aside
       className={cn(
-        "h-full w-64 bg-sidebar z-20 shadow-md flex flex-col transition-transform duration-1000 ease-in-out", // Slowed down animation
+        "h-auto max-h-[70vh] my-auto w-64 bg-white/80 backdrop-blur-sm z-20 shadow-md flex flex-col transition-transform duration-2000 ease-in-out rounded-r-xl border border-[#143f6b]/60", // Modified styling for zen-like appearance
         open ? "translate-x-0" : "-translate-x-full"
       )}
     >
       <div className="flex flex-col h-full">
-        <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
-          <span className="text-lg font-medium text-sidebar-foreground">storm</span>
+        <div className="flex items-center justify-between h-16 px-4 border-b border-[#143f6b]/20">
+          <span className="text-lg font-medium text-[#002244]">storm</span>
           <Button
             variant="ghost"
             size="icon"
-            className="text-sidebar-foreground"
+            className="text-[#002244]"
             onClick={() => setOpen(false)}
           >
             <X className="h-5 w-5" />
@@ -62,23 +59,23 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
         </div>
         
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-          {/* Advanced Options Section - Moved from sheet */}
-          <div className="mb-4 pb-4 border-b border-sidebar-border">
+          {/* Advanced Options Section - Now as first item in menu */}
+          <div className="mb-4 pb-4 border-b border-[#143f6b]/20">
             <Collapsible 
               open={advancedOptionsOpen}
               onOpenChange={setAdvancedOptionsOpen}
               className="w-full"
             >
-              <CollapsibleTrigger className="flex w-full items-center px-3 py-2 rounded-md text-sm font-medium text-sidebar-foreground bg-sidebar-accent/30 hover:bg-sidebar-accent transition-colors">
+              <CollapsibleTrigger className="flex w-full items-center px-3 py-2 rounded-md text-sm font-medium text-[#002244] bg-[#143f6b]/10 hover:bg-[#143f6b]/20 transition-colors">
                 <Settings2 
                   className="mr-3 h-4 w-4"
                 />
                 Advanced Options
               </CollapsibleTrigger>
               <CollapsibleContent className="pl-4 pr-2 py-2 space-y-4 animate-fade-in">
-                <Card className="border border-sidebar-border bg-sidebar-accent/30">
+                <Card className="border border-[#143f6b]/20 bg-white/90">
                   <CardContent className="pt-4 pb-2">
-                    <h3 className="font-medium mb-2 text-sm text-sidebar-foreground">Search Filters</h3>
+                    <h3 className="font-medium mb-2 text-sm text-[#002244]">Search Filters</h3>
                     <div className="space-y-2">
                       <div className="p-3 bg-white/80 rounded-lg border border-black/5">
                         Location Filters
@@ -90,11 +87,11 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
                   </CardContent>
                 </Card>
 
-                <Card className="border border-sidebar-border bg-sidebar-accent/30">
+                <Card className="border border-[#143f6b]/20 bg-white/90">
                   <CardContent className="pt-4 pb-2">
-                    <h3 className="font-medium mb-2 text-sm text-sidebar-foreground">Image Search</h3>
+                    <h3 className="font-medium mb-2 text-sm text-[#002244]">Image Search</h3>
                     <div className="flex justify-end">
-                      <Button size="sm" className="rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
+                      <Button size="sm" className="rounded-xl bg-[#143f6b] text-white">
                         <Upload className="mr-2 h-3 w-3" />
                         Upload Image
                       </Button>
@@ -102,13 +99,13 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
                   </CardContent>
                 </Card>
                 
-                <div className="pt-2 border-t border-sidebar-border/50">
-                  <h3 className="font-medium mb-2 text-xs text-sidebar-foreground/70 px-2">OSINT Resources</h3>
+                <div className="pt-2 border-t border-[#143f6b]/20">
+                  <h3 className="font-medium mb-2 text-xs text-[#002244]/70 px-2">OSINT Resources</h3>
                   <div className="flex flex-wrap gap-2">
-                    <a href="https://osintframework.com" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-full bg-sidebar-accent/30 text-sidebar-foreground/80 hover:bg-sidebar-accent/50 transition-colors">
+                    <a href="https://osintframework.com" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-full bg-[#143f6b]/10 text-[#002244]/80 hover:bg-[#143f6b]/20 transition-colors">
                       osintframework.com
                     </a>
-                    <a href="https://intelx.io" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-full bg-sidebar-accent/30 text-sidebar-foreground/80 hover:bg-sidebar-accent/50 transition-colors">
+                    <a href="https://intelx.io" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-full bg-[#143f6b]/10 text-[#002244]/80 hover:bg-[#143f6b]/20 transition-colors">
                       intelx.io
                     </a>
                   </div>
@@ -117,11 +114,12 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
             </Collapsible>
           </div>
           
+          {/* Navigation Links */}
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
+              className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-[#002244] hover:bg-[#143f6b]/10 transition-colors"
               onClick={() => setOpen(false)}
             >
               <item.icon className="mr-3 h-4 w-4" />
@@ -130,13 +128,13 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
           ))}
           
           {/* Advanced Tools Section */}
-          <div className="mt-4 pt-4 border-t border-sidebar-border">
+          <div className="mt-4 pt-4 border-t border-[#143f6b]/20">
             <Collapsible 
               open={advancedToolsOpen}
               onOpenChange={setAdvancedToolsOpen}
               className="w-full"
             >
-              <CollapsibleTrigger className="flex w-full items-center px-3 py-2 rounded-md text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent transition-colors">
+              <CollapsibleTrigger className="flex w-full items-center px-3 py-2 rounded-md text-sm font-medium text-[#002244] hover:bg-[#143f6b]/10 transition-colors">
                 <ChevronRight 
                   className={cn(
                     "mr-3 h-4 w-4 transition-transform",
@@ -146,11 +144,11 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
                 Advanced Tools
               </CollapsibleTrigger>
               <CollapsibleContent className="pl-4 pr-2 py-2 space-y-4">
-                <Card className="border border-sidebar-border bg-sidebar-accent/30">
+                <Card className="border border-[#143f6b]/20 bg-white/90">
                   <CardContent className="pt-4 pb-2">
-                    <h3 className="font-medium mb-2 text-sm text-sidebar-foreground">Notes</h3>
+                    <h3 className="font-medium mb-2 text-sm text-[#002244]">Notes</h3>
                     <div className="flex justify-end">
-                      <Button size="sm" className="rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
+                      <Button size="sm" className="rounded-xl bg-[#143f6b] text-white">
                         <FileText className="mr-2 h-3 w-3" />
                         Open Notes
                       </Button>
@@ -160,36 +158,22 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
               </CollapsibleContent>
             </Collapsible>
           </div>
-          
-          {/* Advanced Settings Section */}
-          <div className="mt-2">
-            <Collapsible 
-              open={advancedOpen}
-              onOpenChange={setAdvancedOpen}
-              className="w-full"
-            >
-              <CollapsibleTrigger className="flex w-full items-center px-3 py-2 rounded-md text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent transition-colors">
-                <ChevronRight 
-                  className={cn(
-                    "mr-3 h-4 w-4 transition-transform",
-                    advancedOpen && "rotate-90"
-                  )}
-                />
-                Advanced Settings
-              </CollapsibleTrigger>
-              <CollapsibleContent className="pl-10 pr-3 py-2 space-y-2">
-                <Link
-                  to="/about"
-                  className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
-                  onClick={() => setOpen(false)}
-                >
-                  <Info className="mr-3 h-4 w-4" />
-                  About
-                </Link>
-              </CollapsibleContent>
-            </Collapsible>
-          </div>
         </nav>
+        
+        {/* Settings wheel now inside the sidebar at the bottom */}
+        <div className="p-3 border-t border-[#143f6b]/20 flex justify-center">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            asChild 
+            className="h-9 w-9 rounded-full bg-[#143f6b]/10 hover:bg-[#143f6b]/20 transition-all"
+          >
+            <Link to="/settings">
+              <Settings2 className="h-4 w-4 text-[#002244]" />
+              <span className="sr-only">Settings</span>
+            </Link>
+          </Button>
+        </div>
       </div>
     </aside>
   );

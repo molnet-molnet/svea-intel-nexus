@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Settings2 } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -34,24 +34,25 @@ const Index = () => {
               />
               <Button
                 type="submit"
-                className="absolute right-1.5 top-1/2 transform -translate-y-1/2 rounded-xl"
+                className="absolute right-1.5 top-1/2 transform -translate-y-1/2 rounded-xl bg-primary/20 hover:bg-primary/30 text-[#9A7D2E]"
                 disabled={!searchQuery.trim()}
+                size="sm"
               >
-                Search
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <Search className="h-4 w-4" />
+                <span className="sr-only">Search</span>
               </Button>
             </div>
           </form>
           
-          {/* Moved storm logo below search bar with enhanced styling */}
-          <div className="mt-6 transform scale-x-125">
-            <Link to="/" className="font-quicksand font-bold text-3xl tracking-wider text-foreground relative">
-              <span className="relative inline-block px-1 transform scale-x-110">
-                <span className="bg-gradient-to-r from-[#0a2e52] to-[#143f6b] bg-clip-text text-transparent">
+          {/* Improved storm logo below search bar with enhanced styling */}
+          <div className="mt-6 transform scale-125">
+            <Link to="/" className="font-quicksand font-bold text-3xl tracking-wider text-foreground relative inline-block">
+              <span className="relative inline-block px-1 transform scale-x-110 scale-y-110">
+                <span className="bg-[#002244] bg-clip-text text-transparent">
                   storm
                 </span>
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0a2e52]/50 to-[#143f6b]/40 transform scale-x-75"></span>
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0a2e52]/50 to-[#143f6b]/40 transform scale-x-75 blur-sm"></span>
+                <span className="absolute -bottom-1 left-0 right-0 h-0.75 bg-[#9A7D2E] transform scale-x-75"></span>
+                <span className="absolute -bottom-1 left-0 right-0 h-0.75 bg-[#9A7D2E] transform scale-x-75 blur-sm"></span>
               </span>
             </Link>
           </div>
