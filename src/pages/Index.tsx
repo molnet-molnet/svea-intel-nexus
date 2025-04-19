@@ -22,17 +22,13 @@ const Index = () => {
     <MainLayout>
       <div className="flex flex-col items-center justify-center min-h-[80vh]">
         <div className="flex flex-col items-center text-center space-y-8 w-full max-w-xl px-4">
-          {/* Logo above search bar */}
-          <div className="mb-6 transform scale-125">
-            <Link to="/" className="font-quicksand font-bold text-3xl tracking-wider text-foreground relative inline-block">
-              <span className="relative inline-block px-1 transform scale-x-110 scale-y-110">
-                <span className="bg-[#002244] bg-clip-text text-transparent">
-                  storm
-                </span>
-                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#9A7D2E] transform scale-x-75"></span>
-                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#9A7D2E] transform scale-x-75 blur-sm"></span>
-              </span>
-            </Link>
+          {/* Main logo above search bar */}
+          <div className="mb-8">
+            <img 
+              src="/lovable-uploads/c8e20da6-de7d-4a4c-a2d8-00c9ba3ef0dd.png" 
+              alt="OSINT Logo" 
+              className="w-40 h-40 object-contain"
+            />
           </div>
 
           {/* Search form */}
@@ -56,6 +52,19 @@ const Index = () => {
               </Button>
             </div>
           </form>
+
+          {/* OSINT text below search bar */}
+          <div className="mt-6">
+            <Link to="/" className="font-quicksand font-bold text-3xl tracking-wider text-foreground relative inline-block">
+              <span className="relative inline-block px-1">
+                <span className="bg-[#002244] bg-clip-text text-transparent">
+                  OSINT
+                </span>
+                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#9A7D2E] transform scale-x-75"></span>
+                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#9A7D2E] transform scale-x-75 blur-sm"></span>
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </MainLayout>

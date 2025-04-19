@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Settings2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
 
@@ -19,7 +18,7 @@ const SidebarZen = ({ open, setOpen }: SidebarZenProps) => {
     >
       <Sidebar open={open} setOpen={setOpen} />
       
-      {/* Updated Zen menu toggle button with circle design */}
+      {/* Updated tab with new logo */}
       <div 
         className={cn(
           "absolute top-36 -right-12 h-24 w-12 flex items-center justify-center cursor-pointer transition-all duration-2000 ease-in-out",
@@ -27,8 +26,12 @@ const SidebarZen = ({ open, setOpen }: SidebarZenProps) => {
         )}
         onClick={() => setOpen(!open)}
       >
-        <div className="w-10 h-10 bg-[#143f6b] rounded-full border border-[#9A7D2E]/60 flex items-center justify-center">
-          <Settings2 className="h-5 w-5 text-[#9A7D2E]" />
+        <div className="w-10 h-10 bg-[#143f6b] rounded-full border border-[#9A7D2E]/60 flex items-center justify-center overflow-hidden">
+          <img
+            src="/lovable-uploads/92895bdd-322a-4f8c-9818-5398aa73bcc6.png"
+            alt="Menu Toggle"
+            className="w-8 h-8 object-contain"
+          />
         </div>
       </div>
     </div>
