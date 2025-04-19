@@ -1,10 +1,9 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
-import { Settings, MoreVertical } from "lucide-react";
+import { Settings, MoreVertical, Settings2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -41,28 +40,22 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <div className="flex flex-1 overflow-hidden">
         <div 
           className={cn(
-            "fixed inset-y-0 left-0 z-20 transition-all duration-2000 ease-in-out", // Slowed down animation further
+            "fixed inset-y-0 left-0 z-20 transition-all duration-2000 ease-in-out",
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           )}
         >
           <Sidebar open={sidebarOpen} setOpen={setSidebarOpen} />
           
-          {/* Zen menu toggle button - redesigned as a side tab with three dots in triangle formation */}
+          {/* Updated Zen menu toggle button with circle design */}
           <div 
             className={cn(
               "absolute top-36 -right-12 h-24 w-12 flex items-center justify-center cursor-pointer transition-all duration-2000 ease-in-out",
-              sidebarOpen ? "translate-x-64" : "translate-x-0" // Button follows the menu
+              sidebarOpen ? "translate-x-64" : "translate-x-0"
             )}
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
-            <div className="w-10 h-20 bg-[#143f6b] rounded-r-xl border-r border-t border-b border-[#9A7D2E]/60 flex flex-col items-center justify-center">
-              <div className="flex flex-col items-center gap-1">
-                <div className="flex gap-1">
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#9A7D2E]"></div>
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#9A7D2E]"></div>
-                </div>
-                <div className="h-1.5 w-1.5 rounded-full bg-[#9A7D2E]"></div>
-              </div>
+            <div className="w-10 h-10 bg-[#143f6b] rounded-full border border-[#9A7D2E]/60 flex items-center justify-center">
+              <Settings2 className="h-5 w-5 text-[#9A7D2E]" />
             </div>
           </div>
         </div>
