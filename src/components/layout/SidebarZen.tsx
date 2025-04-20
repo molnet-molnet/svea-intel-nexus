@@ -2,7 +2,7 @@
 import React from "react";
 import Sidebar from "./Sidebar";
 import SidebarTab from "./SidebarTab";
-import { Menu } from "lucide-react";
+import { MenuSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SidebarZenProps {
@@ -19,11 +19,11 @@ const SidebarZen = ({ open, setOpen }: SidebarZenProps) => {
       )}
       style={{ pointerEvents: "none" }}
     >
-      {/* Sidebar: Now right edge, pointerEvents auto */}
+      {/* Sidebar: Right edge, pointerEvents auto */}
       <Sidebar open={open} setOpen={setOpen} />
       <SidebarTab
         open={open}
-        icon={<Menu className="h-7 w-7 text-blue-700" />}
+        icon={<MenuSquare className="h-8 w-8 text-[#9A7D2E]" />}
         onClick={() => setOpen(!open)}
       />
     </div>
@@ -31,3 +31,4 @@ const SidebarZen = ({ open, setOpen }: SidebarZenProps) => {
 };
 
 export default SidebarZen;
+
