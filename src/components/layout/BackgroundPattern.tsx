@@ -3,20 +3,31 @@ import React from "react";
 
 const BackgroundPattern = () => {
   return (
-    <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-      <div className="h-full w-full grid-pattern"></div>
-      <div className="h-full w-full absolute top-0 left-0">
-        {Array.from({ length: 20 }).map((_, i) => (
+    <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden">
+      <div className="h-full w-full relative">
+        {Array.from({ length: 40 }).map((_, i) => (
           <div 
             key={i}
-            className="data-point absolute"
+            className="absolute braille-pattern"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
+              transform: `rotate(${Math.random() * 360}deg)`
             }}
-          ></div>
+          />
         ))}
       </div>
+      <style jsx global>{`
+        .braille-pattern {
+          width: 60px;
+          height: 30px;
+          opacity: 0.4;
+          background-image: radial-gradient(circle, currentColor 2px, transparent 2px);
+          background-size: 12px 12px;
+          background-position: center;
+          background-repeat: space;
+        }
+      `}</style>
     </div>
   );
 };

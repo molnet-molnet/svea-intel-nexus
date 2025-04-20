@@ -9,33 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      osint: {
+      intel_entries: {
         Row: {
           created_at: string
-          id: number
+          id: string
+          notes: string | null
+          title: string | null
+          url: string | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string
-          id?: number
+          id?: string
+          notes?: string | null
+          title?: string | null
+          url?: string | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string
-          id?: number
-        }
-        Relationships: []
-      }
-      "osint-table": {
-        Row: {
-          created_at: string
-          id: number
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-        }
-        Update: {
-          created_at?: string
-          id?: number
+          id?: string
+          notes?: string | null
+          title?: string | null
+          url?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }

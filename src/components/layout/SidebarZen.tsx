@@ -2,6 +2,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Sidebar from "./Sidebar";
+import { Eye } from "lucide-react";
 
 interface SidebarZenProps {
   open: boolean;
@@ -18,20 +19,15 @@ const SidebarZen = ({ open, setOpen }: SidebarZenProps) => {
     >
       <Sidebar open={open} setOpen={setOpen} />
       
-      {/* Updated tab with new logo */}
       <div 
         className={cn(
-          "absolute top-36 -right-12 h-24 w-12 flex items-center justify-center cursor-pointer transition-all duration-2000 ease-in-out",
-          open ? "translate-x-64" : "translate-x-0"
+          "absolute top-36 -right-12 h-24 w-12 flex items-center justify-center cursor-pointer transition-all duration-1000 ease-in-out",
+          open ? "translate-x-64 opacity-0" : "translate-x-0 opacity-100"
         )}
         onClick={() => setOpen(!open)}
       >
-        <div className="w-10 h-10 bg-[#143f6b] rounded-full border border-[#9A7D2E]/60 flex items-center justify-center overflow-hidden">
-          <img
-            src="/lovable-uploads/92895bdd-322a-4f8c-9818-5398aa73bcc6.png"
-            alt="Menu Toggle"
-            className="w-8 h-8 object-contain"
-          />
+        <div className="w-10 h-10 bg-[#143f6b]/90 backdrop-blur-sm rounded-full border border-[#9A7D2E]/40 flex items-center justify-center hover:bg-[#143f6b] transition-colors">
+          <Eye className="h-5 w-5 text-[#9A7D2E]" />
         </div>
       </div>
     </div>

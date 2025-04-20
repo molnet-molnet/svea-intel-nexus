@@ -25,8 +25,8 @@ const Index = () => {
           {/* Main logo above search bar */}
           <div className="mb-8">
             <img 
-              src="/lovable-uploads/c8e20da6-de7d-4a4c-a2d8-00c9ba3ef0dd.png" 
-              alt="OSINT Logo" 
+              src="/lovable-uploads/24a4d129-8afb-41ed-b8c5-f5f19d0177e8.png" 
+              alt="Storm Logo" 
               className="w-40 h-40 object-contain"
             />
           </div>
@@ -53,12 +53,12 @@ const Index = () => {
             </div>
           </form>
 
-          {/* OSINT text below search bar */}
+          {/* storm text below search bar */}
           <div className="mt-6">
             <Link to="/" className="font-quicksand font-bold text-3xl tracking-wider text-foreground relative inline-block">
               <span className="relative inline-block px-1">
                 <span className="bg-[#002244] bg-clip-text text-transparent">
-                  OSINT
+                  storm
                 </span>
                 <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#9A7D2E] transform scale-x-75"></span>
                 <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#9A7D2E] transform scale-x-75 blur-sm"></span>
