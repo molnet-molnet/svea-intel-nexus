@@ -17,17 +17,19 @@ const BackgroundPattern = () => {
           />
         ))}
       </div>
-      <style jsx global>{`
-        .braille-pattern {
-          width: 60px;
-          height: 30px;
-          opacity: 0.4;
-          background-image: radial-gradient(circle, currentColor 2px, transparent 2px);
-          background-size: 12px 12px;
-          background-position: center;
-          background-repeat: space;
-        }
-      `}</style>
+      <style>
+        {`
+          .braille-pattern {
+            width: 60px;
+            height: 30px;
+            opacity: 0.4;
+            background-image: radial-gradient(circle, currentColor 2px, transparent 2px);
+            background-size: 12px 12px;
+            background-position: center;
+            background-repeat: space;
+          }
+        `}
+      </style>
     </div>
   );
 };
