@@ -47,6 +47,8 @@
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 200 10% 20%;
     --sidebar-ring: 175 60% 60%;
+
+    --gold-accent: #9A7D2E;
   }
 
   .dark {
@@ -152,5 +154,43 @@
     100% {
       opacity: 0.2;
     }
+  }
+
+  .glitch-text-english {
+    transition: opacity 0.18s, filter 0.20s;
+    text-shadow:
+      0 0 3px #dac377bb,
+      1px 1px 2px #fff5,
+      -1px -1px 1.5px #dac37777;
+    pointer-events: none;
+  }
+
+  .glitch-text {
+    transition: opacity 0.18s, filter 0.2s;
+    text-shadow:
+      0 0 4px #fef4c3a0,
+      0 0 1.7px #dac377,
+      2px -1.8px 1.2px #fff8;
+    pointer-events: none;
+  }
+
+  .glitch-anim {
+    animation: glitch-flicker 0.5s 2 alternate;
+  }
+
+  @keyframes glitch-flicker {
+    0%   { filter: blur(0.9px) skewX(9deg);   }
+    30%  { filter: blur(0.2px) skewX(-5deg); }
+    60%  { filter: blur(1.2px) skewX(7deg);  }
+    100% { filter: blur(0.05px) skewX(-8deg);}
+  }
+
+  .font-quicksand.italic, .italic {
+    font-family: 'Quicksand', 'Segoe Script', 'Brush Script MT', cursive, sans-serif;
+    font-style: italic;
+  }
+
+  .sidebar-tab {
+    transition: opacity 0.5s, background 0.2s, color 0.3s;
   }
 }
