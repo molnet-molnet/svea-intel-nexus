@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
@@ -6,55 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-
-const GlitchLatin = () => {
-  const [showEnglish, setShowEnglish] = React.useState(false);
-
-  React.useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    let triggerGlitch = () => {
-      const delay = 5000 + Math.random() * 8000;
-      timeout = setTimeout(() => {
-        setShowEnglish(true);
-        setTimeout(() => setShowEnglish(false), 1720); // Show for 1.7s
-        triggerGlitch();
-      }, delay);
-    };
-    triggerGlitch();
-    return () => clearTimeout(timeout);
-  }, []);
-  return (
-    <p className="text-[17px] font-medium font-quicksand italic relative text-[#9A7D2E] mt-2">
-      {/* Latin */}
-      <span
-        className={cn(
-          "transition-opacity duration-200 glitch-text block",
-          showEnglish ? "opacity-0" : "opacity-100"
-        )}
-        style={{
-          letterSpacing: "0.02em", filter: "blur(0.2px) skewX(-10deg)",
-          fontStyle: "italic"
-        }}
-      >
-        Omnia Vincula Sunt
-      </span>
-      {/* English translation */}
-      <span
-        className={cn(
-          "absolute left-0 top-0 transition-opacity duration-150 glitch-text-english block w-full text-[#9A7D2E] text-[17px] italic",
-          showEnglish ? "opacity-100 glitch-anim" : "opacity-0"
-        )}
-        style={{
-          letterSpacing: "0.02em",
-          filter: "blur(0.2px) skewX(-5deg)",
-          fontStyle: "italic"
-        }}
-      >
-        All things are connected
-      </span>
-    </p>
-  );
-};
+import GlitchLatin from "@/components/layout/GlitchLatin";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -113,9 +66,11 @@ const Index = () => {
                 <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#9A7D2E] transform scale-x-75 blur-sm"></span>
               </span>
             </span>
-            <GlitchLatin />
+            {/* Removed: glitch latin text here */}
           </div>
         </div>
+        {/* Moved down, like copyright/sign off */}
+        <GlitchLatin className="mt-12" />
       </div>
     </MainLayout>
   );
