@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import GlitchLatin from "@/components/layout/GlitchLatin";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -66,11 +65,8 @@ const Index = () => {
                 <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#9A7D2E] transform scale-x-75 blur-sm"></span>
               </span>
             </span>
-            {/* Removed: glitch latin text here */}
           </div>
         </div>
-        {/* Moved down, like copyright/sign off */}
-        <GlitchLatin className="mt-12" />
       </div>
     </MainLayout>
   );

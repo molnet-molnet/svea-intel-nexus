@@ -1,84 +1,78 @@
 
 import React from "react";
 
-// Controls: number of lines, chars per line, dot probability
-const LINES = 12;
-const CHARS_PER_LINE = 26;
-const DOT_CHANCE = 0.17; // sparseness: lower is sparser
-
+// Number of dots, don't use lines. All are positioned and animated individually.
+const DOTS = 60; // Adjust for sparseness/density
 const GOLD_COLORS = ["#9A7D2E", "#dac377", "#b4993a"];
 
-function randomDotLine(charsPerLine: number, blindStart: number, blindEnd: number) {
-  // Generate a "dots" line: dots, " ", with blank zone at end
-  const arr = Array(charsPerLine).fill(" ");
-  for (let i = 0; i < charsPerLine; i++) {
-    // Right-most [blindEnd] is always redacted; left is drawn as normal
-    if (i > blindStart && i < charsPerLine - blindEnd) {
-      if (Math.random() < DOT_CHANCE) arr[i] = "⠄";
-    }
-  }
-  return arr.join("");
+function generateRandomDotData() {
+  // Dot appears between 6% (left gutter) and 86% (avoid right 14%)
+  // Top is from 5% to 94%
+  // All positions are percentages for responsiveness.
+  const x = Math.random() * 80 + 6; // 6% - 86%
+  const y = Math.random() * 89 + 5; // 5% - 94%
+  const color = Math.random() > 0.8
+    ? GOLD_COLORS[Math.floor(Math.random() * GOLD_COLORS.length)]
+    : "#b1aa99";
+  const size = Math.random() > 0.91 ? "1.25rem" : "0.88rem";
+  const opacity = Math.random() > 0.85 ? 0.23 : (Math.random() * 0.16 + 0.08);
+  const animDuration = Math.random() * 2.1 + 2; // 2s to 4s
+  const animDelay = Math.random() * 2; // random start point
+  return { x, y, color, size, opacity, animDuration, animDelay };
 }
 
-const BackgroundPattern = () => {
-  // Right margin blind spot: e.g. 7 spaces at right, 3 at left.
-  const blindStart = 2; // blank at left (to not collide with main content)
-  const blindEnd = 7; // bigger blind spot on the right for menu column
+const dots = Array.from({ length: DOTS }).map(generateRandomDotData);
 
-  // Precompute lines to ensure deterministic render
-  const lines = React.useMemo(
-    () =>
-      Array.from({ length: LINES }).map((_, i) =>
-        randomDotLine(CHARS_PER_LINE, blindStart, blindEnd)
-      ),
-    []
-  );
-
-  return (
-    <div
-      className="absolute inset-0 pointer-events-none overflow-hidden"
-      aria-hidden
-      style={{
-        background: "linear-gradient(to bottom, #fcfcf8 93%, #f4f4e6 100%)",
-        zIndex: 0,
-      }}
-    >
-      {/* Braille dot lines (straight, left-to-right, sparse), little/no dots on far right */}
-      <div className="absolute inset-0 w-full h-full flex flex-col justify-center" style={{zIndex: 1}}>
-        {lines.map((line, i) => (
-          <div
-            key={i}
-            className="w-full font-manrope select-none"
-            style={{
-              position: "absolute",
-              left: "6%",
-              top: `${10 + i * 7.1}%`,
-              fontSize: i % 2 === 0 ? "1.19rem" : "1.05rem",
-              color: i % 3 === 0 ? GOLD_COLORS[i % GOLD_COLORS.length] : "#b1aa99",
-              opacity: i % 2 === 0 ? 0.19 : 0.17,
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-              transform: "rotate(0deg)", // straight
-              filter: "blur(0.2px)"
-            }}
-          >
-            {line}
-          </div>
-        ))}
-      </div>
-      {/* Large subtle gold ellipse for depth, shifted left */}
-      <div style={{
-        position: "absolute",
-        left: "calc(27% - 164px)",
-        top: "38%",
-        width: 300, height: 100,
-        borderRadius: "44%",
-        opacity: 0.15, background: GOLD_COLORS[1],
-        filter: "blur(26px)", zIndex: 0,
-      }} />
+const BackgroundPattern = () => (
+  <div
+    className="absolute inset-0 pointer-events-none overflow-hidden"
+    aria-hidden
+    style={{
+      background: "linear-gradient(to bottom, #fcfcf8 93%, #f4f4e6 100%)",
+      zIndex: 0,
+    }}
+  >
+    {/* Static & animated dots */}
+    <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
+      {dots.map((dot, i) => (
+        <span
+          key={i}
+          className="braille-dot"
+          style={{
+            position: "absolute",
+            left: `${dot.x}%`,
+            top: `${dot.y}%`,
+            color: dot.color,
+            fontSize: dot.size,
+            opacity: dot.opacity,
+            fontWeight: 700,
+            filter: "blur(0.3px)",
+            animation: `fadeBrailleDot ${dot.animDuration}s ${dot.animDelay}s infinite alternate`,
+            zIndex: 1,
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
+        >⠄</span>
+      ))}
     </div>
-  );
-};
+    {/* Subtle gold ellipse for depth, left side */}
+    <div style={{
+      position: "absolute",
+      left: "calc(16% - 117px)",
+      top: "42%",
+      width: 260, height: 90,
+      borderRadius: "44%",
+      opacity: 0.11, background: GOLD_COLORS[1],
+      filter: "blur(33px)", zIndex: 0,
+    }} />
+    {/* Animation keyframes */}
+    <style>{`
+      @keyframes fadeBrailleDot {
+        from { opacity: ${Math.random() * 0.12 + 0.14}; }
+        to   { opacity: ${Math.random() * 0.22 + 0.02}; }
+      }
+    `}</style>
+  </div>
+);
 
 export default BackgroundPattern;
-
