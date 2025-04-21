@@ -11,7 +11,6 @@ interface SidebarZenProps {
 }
 
 const SidebarZen = ({ open, setOpen }: SidebarZenProps) => {
-  // Sound effect on open/close
   const soundRef = React.useRef<HTMLAudioElement>(null);
 
   const handleTabClick = () => {
@@ -38,7 +37,6 @@ const SidebarZen = ({ open, setOpen }: SidebarZenProps) => {
           onClick={handleTabClick}
         />
       </div>
-      {/* The tab sound (subtle, replace with your preferred WAV/MP3) */}
       <audio ref={soundRef} src="/lovable-uploads/tab-genie.mp3" preload="auto" />
     </>
   );

@@ -40,7 +40,7 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
   return (
     <aside
       className={cn(
-        "h-auto max-h-[70vh] my-auto w-64 bg-white/80 backdrop-blur-sm z-20 shadow-md flex flex-col transition-transform duration-2000 ease-in-out rounded-r-xl border border-[#143f6b]/60", // Modified styling for zen-like appearance
+        "h-auto max-h-[70vh] my-auto w-64 bg-white/80 backdrop-blur-sm z-20 shadow-md flex flex-col transition-transform duration-2000 ease-in-out border border-[#143f6b]/60 rounded-l-xl", // Changed to only round left corners
         open ? "translate-x-0" : "-translate-x-full"
       )}
     >

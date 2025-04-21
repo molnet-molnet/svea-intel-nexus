@@ -1,23 +1,18 @@
-
 import React from "react";
 
-// Number of dots, don't use lines. All are positioned and animated individually.
-const DOTS = 60; // Adjust for sparseness/density
+const DOTS = 60;
 const GOLD_COLORS = ["#9A7D2E", "#dac377", "#b4993a"];
 
 function generateRandomDotData() {
-  // Dot appears between 6% (left gutter) and 86% (avoid right 14%)
-  // Top is from 5% to 94%
-  // All positions are percentages for responsiveness.
-  const x = Math.random() * 80 + 6; // 6% - 86%
-  const y = Math.random() * 89 + 5; // 5% - 94%
+  const x = Math.random() * 80 + 6;
+  const y = Math.random() * 89 + 5;
   const color = Math.random() > 0.8
     ? GOLD_COLORS[Math.floor(Math.random() * GOLD_COLORS.length)]
     : "#b1aa99";
   const size = Math.random() > 0.91 ? "1.25rem" : "0.88rem";
-  const opacity = Math.random() > 0.85 ? 0.23 : (Math.random() * 0.16 + 0.08);
-  const animDuration = Math.random() * 2.1 + 2; // 2s to 4s
-  const animDelay = Math.random() * 2; // random start point
+  const opacity = Math.random() > 0.85 ? 0.29 : (Math.random() * 0.20 + 0.10);
+  const animDuration = Math.random() * 2.1 + 2;
+  const animDelay = Math.random() * 2;
   return { x, y, color, size, opacity, animDuration, animDelay };
 }
 
@@ -32,7 +27,6 @@ const BackgroundPattern = () => (
       zIndex: 0,
     }}
   >
-    {/* Static & animated dots */}
     <div className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
       {dots.map((dot, i) => (
         <span
@@ -55,7 +49,6 @@ const BackgroundPattern = () => (
         >⠄</span>
       ))}
     </div>
-    {/* Subtle gold ellipse for depth, left side */}
     <div style={{
       position: "absolute",
       left: "calc(16% - 117px)",
@@ -65,7 +58,6 @@ const BackgroundPattern = () => (
       opacity: 0.11, background: GOLD_COLORS[1],
       filter: "blur(33px)", zIndex: 0,
     }} />
-    {/* Animation keyframes */}
     <style>{`
       @keyframes fadeBrailleDot {
         from { opacity: ${Math.random() * 0.12 + 0.14}; }
